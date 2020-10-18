@@ -40,6 +40,15 @@ public class PacienteController {
 
 	@PostMapping
 	public Paciente addPaciente(@RequestBody Paciente paciente) {
+		System.out.println(paciente.getData_nascimento());
+		System.out.println(paciente.getAltura());
+		System.out.println(paciente.getCpf());
+		System.out.println(paciente.getEmail());
+		System.out.println(paciente.getEndereco());
+		System.out.println(paciente.getNome());
+		System.out.println(paciente.getPeso());
+		System.out.println(paciente.getData_primeira_consulta());
+		
 		repository.save(paciente);
 		return paciente; 
 	}
@@ -62,13 +71,13 @@ public class PacienteController {
 		if (cpf != null && !cpf.isEmpty()) 
 			pacienteDB.setCpf(cpf);
 		
-		LocalDate dataNascimento = dadosPaciente.getDataNascimento();
+		LocalDate dataNascimento = dadosPaciente.getData_nascimento();
 		if (dataNascimento != null) 
-			pacienteDB.setDataNascimento(dataNascimento);
+			pacienteDB.setData_nascimento(dataNascimento);
 		
-		LocalDate dataPrimeiraConsulta = dadosPaciente.getDataPrimeiraConsulta();
+		LocalDate dataPrimeiraConsulta = dadosPaciente.getData_primeira_consulta();
 		if (dataPrimeiraConsulta != null) 
-			pacienteDB.setDataPrimeiraConsulta(dataPrimeiraConsulta);
+			pacienteDB.setData_primeira_consulta(dataPrimeiraConsulta);
 		
 		String endereco = dadosPaciente.getEndereco();
 		if (endereco != null && !endereco.isEmpty()) 
@@ -94,5 +103,5 @@ public class PacienteController {
 		
 		return dadosPaciente;
 	}
-
+	
 }

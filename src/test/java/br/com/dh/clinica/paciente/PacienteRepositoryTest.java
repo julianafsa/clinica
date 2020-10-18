@@ -84,7 +84,7 @@ public class PacienteRepositoryTest {
 		
 		Paciente pacienteDB = this.pacienteRepository.findOneByCpf(paciente.getCpf());
 		
-		Assertions.assertThat(pacienteDB.getDataNascimento()).isNotNull();
+		Assertions.assertThat(pacienteDB.getData_nascimento()).isNotNull();
 	}
 
 	@Test

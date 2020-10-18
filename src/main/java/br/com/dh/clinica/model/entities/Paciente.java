@@ -1,39 +1,61 @@
 package br.com.dh.clinica.model.entities;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Table(name="paciente")
 public class Paciente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_paciente; // Campo obrigatorio
+	
+	@Column(name = "nome")
 	private String nome; // Campo obrigatorio
+	
+	@Column(name = "cpf")
 	private String cpf; // Campo obrigatorio
+	
+	@Column(name = "data_nascimento")
 	private LocalDate data_nascimento; // Campo obrigatorio
+	
+	@Column(name = "data_primeira_consulta")
 	private LocalDate data_primeira_consulta; // Campo obrigatorio
+	
+	@Column(name = "endereco")
 	private String endereco;
+	
+	@Column(name = "telefone")
 	private String telefone;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "peso")
 	private int peso; // peso em gramas
+	
+	@Column(name = "altura")
 	private int altura; // altura em centímetros
 	
-	/*@OneToMany(mappedBy = "paciente")
+	@OneToMany(mappedBy = "paciente")
 	@JsonIgnoreProperties("paciente")
-	private Set<Consulta> consultas;*/
+	private Set<Consulta> consultas = new HashSet<>();
 
 	public Paciente() {
 	}
-
+	
 	/**
 	 * @param nome
 	 * @param cpf
@@ -57,7 +79,7 @@ public class Paciente {
 		this.email = email;
 		this.peso = peso;
 		this.altura = altura;
-	}
+	}	
 
 	/**
 	 * @return the nome
@@ -88,31 +110,31 @@ public class Paciente {
 	}
 
 	/**
-	 * @return the dataNascimento
+	 * @return the data_primeira_consulta
 	 */
-	public LocalDate getDataNascimento() {
-		return data_nascimento;
-	}
-
-	/**
-	 * @param data_nascimento the dataNascimento to set
-	 */
-	public void setDataNascimento(LocalDate nascimento) {
-		this.data_nascimento = nascimento;
-	}
-
-	/**
-	 * @return the dataPrimeiraConsulta
-	 */
-	public LocalDate getDataPrimeiraConsulta() {
+	public LocalDate getData_primeira_consulta() {
 		return data_primeira_consulta;
 	}
 
 	/**
-	 * @param dataPrimeiraConsulta the dataPrimeiraConsulta to set
+	 * @param data_primeira_consulta the data_primeira_consulta to set
 	 */
-	public void setDataPrimeiraConsulta(LocalDate dataPrimeiraConsulta) {
-		this.data_primeira_consulta = dataPrimeiraConsulta;
+	public void setData_primeira_consulta(LocalDate data_primeira_consulta) {
+		this.data_primeira_consulta = data_primeira_consulta;
+	}
+
+	/**
+	 * @return the data_nascimento
+	 */
+	public LocalDate getData_nascimento() {
+		return data_nascimento;
+	}
+
+	/**
+	 * @param data_nascimento the data_nascimento to set
+	 */
+	public void setData_nascimento(LocalDate data_nascimento) {
+		this.data_nascimento = data_nascimento;
 	}
 
 	/**
@@ -195,15 +217,15 @@ public class Paciente {
 	/**
 	 * @return the consultas
 	 */
-	/*public Set<Consulta> getConsultas() {
+	public Set<Consulta> getConsultas() {
 		return consultas;
-	}*/
+	}
 
 	/**
 	 * @param consultas the consultas to set
 	 */
-	/*public void setConsultas(Set<Consulta> consultas) {
+	public void setConsultas(Set<Consulta> consultas) {
 		this.consultas = consultas;
-	}*/
-	
+	}
+
 }
